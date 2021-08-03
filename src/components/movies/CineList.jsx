@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { useSelector, useDispatch } from "react-redux";
+import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { deleteCita } from "../../Actions/actionCitas";
+
 
 const columns = [
   {
@@ -54,10 +58,13 @@ const columns = [
 ];
 
 
+
+
 function CineList() {
   
   const movie = useSelector((store) => store.cine.data);
-  const rows = movie.map((values) => ({
+  const rows = movie.map((values, index) => ({
+    id: index,
     nombre: values.nombre,
     apellido: values.apellido,
     cui: values.cui,
@@ -73,7 +80,12 @@ function CineList() {
   return (
     <div style={{ height: 400, width: "100%" }}>
      
-      <DataGrid rows={rows} columns={columns} pageSize={5} />
+      <DataGrid rows={rows} columns={columns} pageSize={5}
+     
+
+      
+      
+      />
     </div>
   );
 }
