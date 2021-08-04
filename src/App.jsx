@@ -3,8 +3,9 @@ import { Provider } from "react-redux";
 import Cine from "./components/movies/Cine";
 import { makeStyles } from "@material-ui/core/styles";
 import generateStore from "./Services/store";
-import CineList from "./components/movies/CineList";
+
 import Container from '@material-ui/core/Container';
+import ListCine from "./components/movies/ListCine";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,8 +38,12 @@ function App() {
         
       </Container>
 
-      <div className={classes.margin}>
+     {/*  <div className={classes.margin}>
         <CineList />
+      </div> */}
+      
+      <div className={classes.margin}>
+        <ListCine/>
       </div>
     </Provider>
   );
