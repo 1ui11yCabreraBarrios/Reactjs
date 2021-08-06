@@ -55,12 +55,12 @@ const ListCine = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.index}>
-              <TableCell component="th" scope="row">
+          {rows.map((row,index) => (
+            <TableRow key={index} >
+              <TableCell component="th" scope="row" >
                 {row.nombre}
               </TableCell>
-              <TableCell>{row.apellido}</TableCell>
+              <TableCell >{row.apellido}</TableCell>
               <TableCell>{row.cui}</TableCell>
               <TableCell>{row.movie}</TableCell>
               <TableCell>{row.fecha}</TableCell>
@@ -70,16 +70,9 @@ const ListCine = () => {
               <TableCell>{row.asiento}</TableCell>
               <TableCell>{row.precio}</TableCell>
               <TableCell>
-                <DeleteIcon
-                  variant="contained"
-                  color="secondary"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    dispatch(deleteCompra(row));
-                  }}
-                />
+             
 
-                <MyModal index={row} />
+                <MyModal index={index} />
               </TableCell>
             </TableRow>
           ))}

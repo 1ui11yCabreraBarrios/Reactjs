@@ -7,10 +7,11 @@ import Select from "@material-ui/core/Select";
 import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
-import { saveCompra } from "../../Actions/actionsCine";
+import { useDispatch,useSelector } from "react-redux";
+import { saveCompra, updadteCompra } from "../../Actions/actionsCine";
 import { validCine } from "../../helpers/validate";
 import { Grid } from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,24 +33,26 @@ const useStyles = makeStyles((theme) => ({
 function Cine() {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const { modeCompra, updateCompra} = useSelector(state =>state.cine);
   const formik = useFormik({
     initialValues: {
-      fecha: "",
-      horaInicio: "",
-      horaFinal: "",
-      sala: "",
-      asiento: "",
-      precio: "",
-      nombre: "",
-      apellido: "",
-      cui: "",
-      movie: "",
+      fecha:modeCompra ? updateCompra.movie. fecha:  "",
+      horaInicio:modeCompra ? updateCompra.movie.horaInicio: "",
+      horaFinal: modeCompra ? updateCompra.movie.horaFinal:"",
+      sala: modeCompra ? updateCompra.movie.sala:"",
+      asiento:modeCompra ? updateCompra.movie.asiento: "",
+      precio:modeCompra ? updateCompra.movie.precio: "",
+      nombre: modeCompra ? updateCompra.movie.nombre: "",
+      apellido: modeCompra ? updateCompra.movie.apellido:"",
+      cui:modeCompra ? updateCompra.movie.cui: "",
+      movie:modeCompra ? updateCompra.movie.movie: "",
     },
+    enableReinitialize: true,
     validate: validCine,
 
     onSubmit: (values, { resetForm }) => {
-      dispatch(saveCompra(values));
+   
+   modeCompra ? dispatch(updadteCompra(values, updateCompra.index))  : dispatch(saveCompra(values));
       resetForm();
     },
   });
@@ -263,15 +266,27 @@ function Cine() {
         </Grid>
 
       <div>
-      <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          startIcon={<SaveIcon />}
-          type="submit"
-        >
-          Save
-        </Button>
+        {
+          modeCompra ? (  <Button
+            type="submit "
+            variant="contained"
+            color="primary"
+            startIcon={<EditIcon />}
+            className="rounded w-100 d-block"
+            
+          >
+            Modificar Cita
+          </Button>) : ( <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            startIcon={<SaveIcon />}
+            type="submit"
+          >
+            Save
+          </Button>)
+        }
+     
 
       </div>
 

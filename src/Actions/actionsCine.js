@@ -25,7 +25,7 @@ export const deleteCompra = (movie) => (dispatch) => {
     }
   };
 
-  export const updateCompra = (movie,index) => (dispatch) => {
+  export const updadteCompra = (movie,index) => (dispatch) => {
       try{
         dispatch({
           type:constants.UPDATE_COMPRA,
