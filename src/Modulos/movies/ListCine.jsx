@@ -7,10 +7,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { useSelector, useDispatch } from "react-redux";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { deleteCompra } from "../../Actions/actionsCine";
-import MyModal from "./MyModal";
+import { useSelector } from "react-redux";
+
+import MyModal from "../../components/MyModal";
+import AlertDialog from "../../components/Dialog";
 
 const useStyles = makeStyles({
   table: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 
 const ListCine = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
+
   const movie = useSelector((store) => store.cine.data);
   const rows = movie.map((values, index) => ({
     id: index,
@@ -57,9 +57,7 @@ const ListCine = () => {
         <TableBody>
           {rows.map((row,index) => (
             <TableRow key={index} >
-              <TableCell component="th" scope="row" >
-                {row.nombre}
-              </TableCell>
+              <TableCell >{row.nombre}</TableCell>
               <TableCell >{row.apellido}</TableCell>
               <TableCell>{row.cui}</TableCell>
               <TableCell>{row.movie}</TableCell>
@@ -70,8 +68,8 @@ const ListCine = () => {
               <TableCell>{row.asiento}</TableCell>
               <TableCell>{row.precio}</TableCell>
               <TableCell>
-             
-
+            
+                <AlertDialog index={index}/>
                 <MyModal index={index} />
               </TableCell>
             </TableRow>

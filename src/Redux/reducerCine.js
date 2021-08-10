@@ -29,7 +29,7 @@ export default function cineCompra(compra = cineData, action) {
 
 
     case constants.DELETE_COMPRA:
-      return { data: compra.data.filter((values) => action.payload !== values) };
+      return { data: compra.data.filter((index) => index === action.payload.index  ) };
 
     case constants.ERROR_COMPRA:
       return { hasError: true, error: action.payload };

@@ -1,11 +1,11 @@
 import React from "react";
 import { Provider } from "react-redux";
-import Cine from "./components/movies/Cine";
+import Cine from "./Modulos/movies/Cine";
 import { makeStyles } from "@material-ui/core/styles";
 import generateStore from "./Services/store";
 
 import Container from '@material-ui/core/Container';
-import ListCine from "./components/movies/ListCine";
+import ListCine from "./Modulos/movies/ListCine";
 
 
 const useStyles = makeStyles((theme) => ({

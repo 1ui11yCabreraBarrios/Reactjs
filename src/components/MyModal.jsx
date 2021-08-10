@@ -8,9 +8,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import { useDispatch } from "react-redux";
 import EditIcon from "@material-ui/icons/Edit";
-import { modeCompra } from "../../Actions/actionsCine";
-import Cine from "./Cine";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { modeCompra } from "../Actions/actionsCine";
+import Movies from "../Modulos/movies/Movies";
+
 
 
 const styles = (theme) => ({
@@ -67,12 +67,7 @@ export default function CustomizedDialogs(props) {
   return (
     <div>
       <EditIcon variant="contained" color="primary" onClick={handleClickOpen} />
-      <DeleteIcon
-                  variant="contained"
-                  color="secondary"
-                  onClick={handleClickOpen}
-                
-                />
+     
 
       <Dialog
         onClose={handleClose}
@@ -83,7 +78,7 @@ export default function CustomizedDialogs(props) {
           <h2 id="simple-modal-title">Modulo de Compra</h2>
         </DialogTitle>
         <DialogContent dividers>
-          <Cine cerrar={handleClose}/>
+          <Movies cerrar={handleClose}/>
         </DialogContent>
       </Dialog>
     </div>

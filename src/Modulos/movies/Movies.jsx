@@ -8,7 +8,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import Button from "@material-ui/core/Button";
 import { useFormik } from "formik";
 import { useDispatch,useSelector } from "react-redux";
-import { saveCompra, updadteCompra } from "../../Actions/actionsCine";
+import { updadteCompra } from "../../Actions/actionsCine";
 import { validCine } from "../../helpers/validate";
 import { Grid } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Cine() {
+function Movies(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { modeCompra, updateCompra} = useSelector(state =>state.cine);
@@ -51,8 +51,8 @@ function Cine() {
     validate: validCine,
 
     onSubmit: (values, { resetForm }) => {
-   
-   modeCompra ? dispatch(updadteCompra(values, updateCompra.index))  : dispatch(saveCompra(values));
+        props.cerrar();
+    dispatch(updadteCompra(values, updateCompra.index))  
       resetForm();
     },
   });
@@ -297,4 +297,4 @@ function Cine() {
   );
 }
 
-export default Cine;
+export default Movies;
